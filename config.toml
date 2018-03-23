@@ -10,7 +10,7 @@ theme = "coder"
     default = ":title/"
 
 [params]
-    info = "Thoughts about software and stuff"
+    info = "Thoughts about software and stuff."
     description = "yrachid.toString()"
     keywords = "blog,developer,personal"
 

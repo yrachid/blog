@@ -6,12 +6,14 @@ git submodule update themes/coder
 
 rm -rf public/
 
-hugo -v
+mkdir public
 
 cp now.json public/
 
-cd public
+hugo -v
 
-now
+ls -la public/
 
-cd -
+now public/
+
+now alias
