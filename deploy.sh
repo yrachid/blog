@@ -8,8 +8,10 @@ rm -rf public/
 
 hugo -v
 
+cp now.json public/
+
 cd public
 
-now --public
+now
 
 cd -

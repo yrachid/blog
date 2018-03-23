@@ -1,5 +1,5 @@
 
-baseURL = "https://public-jfqfmpjoxd.now.sh/"
+baseURL = "https://yrachid.com/"
 languageCode = "en-us"
 title = "Yasser Rachid"
 
@@ -9,15 +9,16 @@ theme = "coder"
     post = "posts/:title/"
     default = ":title/"
 
-[params] # theme parameters
+[params]
     info = "Thoughts about software and stuff"
-    description = "John Doe's personal website"
+    description = "yrachid.toString()"
     keywords = "blog,developer,personal"
 
 [[params.social]]
     name = "Github"
     weight = 1
     url = "https://github.com/othman853"
+
 [[params.social]]
     name = "Twitter"
     weight = 2
@@ -27,6 +28,7 @@ theme = "coder"
     name = "Blog"
     weight = 1
     url  = "/posts/"
+
 [[menu.main]]
     name = "About"
     weight = 2
