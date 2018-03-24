@@ -10,26 +10,21 @@ theme = "coder"
     default = ":title/"
 
 [params]
-    info = "Thoughts about software and stuff."
+    info = "Writings"
     description = "yrachid.toString()"
     keywords = "blog,developer,personal"
 
-[[params.social]]
-    name = "Github"
+[[menu.main]]
+    name = "About"
     weight = 1
+    url = "/about/"
+
+[[menu.main]]
+    name = "Github"
+    weight = 2
     url = "https://github.com/othman853"
 
-[[params.social]]
+[[menu.main]]
     name = "Twitter"
     weight = 2
     url = "https://twitter.com/ylrachid/"
-
-[[menu.main]]
-    name = "Blog"
-    weight = 1
-    url  = "/posts/"
-
-[[menu.main]]
-    name = "About"
-    weight = 2
-    url = "/about/"
