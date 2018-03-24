@@ -23,8 +23,3 @@ theme = "coder"
     name = "Github"
     weight = 2
     url = "https://github.com/othman853"
-
-[[menu.main]]
-    name = "Twitter"
-    weight = 2
-    url = "https://twitter.com/ylrachid/"
