@@ -65,6 +65,8 @@ Now we can add some of Vue's secret sauce on it:
 After just adding the minified Vue from a CDN and starting it with a simple new, Vue is already working and delivering something more less
 like this:
 
+![Web page displaying two lines with the respective content: Greetings, Some content](/images/2017/08/11/vue-hello-world.png)
+
 ## A Hello World with React
 
 For the sake of simplicity we can try this by using [create-react-app](https://github.com/facebookincubator/create-react-app), although some
@@ -117,6 +119,8 @@ yarn start
 reload the application at every change made in its code.
 
 After those four steps, it should be possible to get create-react-app's hello world:
+
+![React's Hello world page with its logo ](/images/2017/08/11/react-hello-world.png)
 
 Let's quickly look around the project's code. First, let's peek into `src/App.js`:
 
@@ -296,6 +300,9 @@ CSS.
 
 ## Hello Webpack
 
+
+![Illustration of how Webpack works](/images/2017/08/11/webpack-bundling-illustration.png)
+
 The great thing about Webpack is that it gets all the code and assets spread around many files and transforms them into single chunks that
 can be used as static assets. That means that it can use transpilers too, giving you the possibility of using fancy things like TypeScript,
 ES6 or Sass, without having to worry about how it's going to work in the end, since it will all be transformed to something that browsers
@@ -357,6 +364,11 @@ be used as a static asset.
 
 More less like the following illustration:
 
+
+![A diagram showing how Webpack reads the import statements of the application files and then puts all of the files together in a single
+file called bundle, respecting the order of the imports it found during the process of reading the
+code](/images/2017/08/11/webpack-bundle-diagram.png)
+
 _Please do note that this illustration is not accurate, it's just an ugly analogy on how Webpack performs its shenanigans._
 
 Ok, let's give it a try:
@@ -366,6 +378,8 @@ Ok, let's give it a try:
 ```
 
 Looks like it partially worked:
+
+![Webpack output indicating that an error occured during the bundle attempt](/images/2017/08/11/webpack-bundling-error.png)
 
 Even though we ended up with a `bundle.js` file with some content, Webpack still failed to parse our `.vue` file, and its error message is
 telling us why:
@@ -419,6 +433,8 @@ Let's give it another try now:
 
 Looks like it finally worked:
 
+![Webpack output indicating that it managed to generate our bundle successfully](/images/2017/08/11/webpack-bundling-success.png)
+
 Now we have a `bundle.js`. What to do with it?
 
 ### The index.html file
@@ -448,6 +464,9 @@ Remember to add the Vue container specified in our main.js. That would be an ele
 ```
 
 Now, if we open the html file, we should see a masterpiece:
+
+![Final result, similar to the first Vue.js hello world, only this time the "Greetings" word is painted in
+red](/images/2017/08/11/vue-sfc-final-result.png)
 
 ## Where is Babel?
 
