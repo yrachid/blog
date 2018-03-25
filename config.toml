@@ -5,6 +5,10 @@ title = "Yasser Rachid"
 
 theme = "coder"
 
+pygmentsstyle = "b2"
+pygmentscodefences = true
+pygmentscodefencesguesssyntax = true
+
 [permalinks]
     post = "posts/:title/"
     default = ":title/"
