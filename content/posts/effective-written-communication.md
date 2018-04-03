@@ -39,3 +39,16 @@ It should (or shouldn't) be an email
 Be polite
  It never hurts to say things like hello or thanks. That's just human protocol, follow it.
 
+Don't repeat yourself
+
+  Ask for things that will prevent you from asking for the information you're currently asking for.
+
+  Eg.:
+
+  Instead of only asking:
+
+    When will the next release happen?
+
+  Maybe ask:
+
+    When will the next release happen? Do you have a dashboard or changelog where we can look for updates on that?
