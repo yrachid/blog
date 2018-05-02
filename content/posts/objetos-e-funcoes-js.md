@@ -73,6 +73,8 @@ Quando tentamos acessar um elemento que não existe, recebemos `undefined`:
   console.log(vigesimoElemento) // undefined
 ```
 
+[Mais informações sobre arrays](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array).
+
 
 ## Objetos
 
@@ -97,9 +99,11 @@ Um objeto com campos:
   }
 ```
 
-Não existe restrição quanto ao tipo de informação que se pode guardar em um campo de um objeto. Podemos ter, por exemplo:
+_Não existe restrição quanto ao tipo de informação que se pode guardar em um campo de um objeto._
 
-Um objecto com um campo que contém outro objeto:
+Podemos ter, por exemplo:
+
+Um objeto com um campo que contém outro objeto:
 
 ```javascript
   const pessoaComPet = {
@@ -127,7 +131,7 @@ Um campo que contém um array que contém outros objetos:
 
 ```javascript
   const aviao = {
-    fabricante: 'Boeing'
+    fabricante: 'Boeing',
     modelo: '787-900',
     voos: [
       {
@@ -146,8 +150,30 @@ Um campo que contém um array que contém outros objetos:
   }
 ```
 
+### Construindo objetos com variáveis
 
-__Acessando elementos de um objeto:__
+Podemos construir objetos à partir de outras variáveis, ou seja, não precisamos sempre colocar os dados de maneira estática em cada campo
+(como fora demonstrado nos exemplos anteriores). Podemos fazer coisas como:
+
+```javascript
+const nome = 'Lopes'
+const idade = 30
+
+const pessoa = {
+  nome: nome,
+  idade: idade
+}
+
+// Ou, podemos simplificar para o seguinte:
+
+const pessoa = {
+  nome,
+  idade
+}
+
+```
+
+### Acessando elementos de um objeto
 
 Existem diferentes maneiras de se acessar elementos de um objeto, a mais comum é através do ponto (`.`). Considerando os exemplos acima:
 
@@ -168,4 +194,40 @@ Também como nos arrays, acessar um elemento inexistente de um objeto nos retorn
 ```javascript
   console.log(pessoa.aaaaaaa) // undefined
   console.log(pessoa['aaaaaaa']) // undefined
+```
+
+## Funções
+
+No começo, funções são a parte mais confusa do Javascript, pois a natureza da linguagem permite que as tratemos como qualquer outro objeto,
+o que significa que podemos fazer coisas como:
+
+- Guardar uma função em uma variável
+- Enviar uma função por parâmetro
+- Ter uma função que retorna uma função
+- Ter uma função como membro de um objeto
+
+Vamos começar pelo começo, entendendo como declarar uma função. Temos duas opções na hora de declarar uma nova função:
+
+- Usar a palavra reservada `function`
+- Definir uma arrow function
+
+Vejamos:
+
+Uma nova `function`:
+
+```javascript
+
+function saudacao() {
+  return "Oi"
+}
+
+```
+
+Uma arrow function:
+
+```javascript
+const saudacao = () => {
+  return "Oi"
+}
+
 ```
