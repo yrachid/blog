@@ -205,29 +205,86 @@ o que significa que podemos fazer coisas como:
 - Enviar uma função por parâmetro
 - Ter uma função que retorna uma função
 - Ter uma função como membro de um objeto
+- Ter uma função dentro de outra função
 
-Vamos começar pelo começo, entendendo como declarar uma função. Temos duas opções na hora de declarar uma nova função:
+Vamos começar pelo começo, entendendo como declarar e chamar uma função. Temos duas opções na hora de declarar uma nova função:
 
-- Usar a palavra reservada `function`
-- Definir uma arrow function
-
-Vejamos:
-
-Uma nova `function`:
+Declarando uma função simples:
 
 ```javascript
 
 function saudacao() {
   return "Oi"
 }
-
 ```
 
-Uma arrow function:
+Chamando a função que acabamos de declarar:
 
 ```javascript
-const saudacao = () => {
-  return "Oi"
-}
+
+const resultado = saudacao()
+
+console.log(resultado) // Oi
 
 ```
+
+### Funções com parâmetros
+
+Podemos especificar os parâmetros que desejamos que uma função receba:
+
+```javascript
+function saudacao(nome) {
+  return "Olá, " + nome
+}
+
+const resultado = saudacao('Silva')
+
+console.log(resultado) // Olá, Silva
+```
+
+Apesar de termos especificado que a função deve receber um parâmetro, o Javascript não impedirá que a gente a chame sem passar os
+parâmetros:
+
+```javascript
+function saudacao(nome) {
+  return "Olá, " + nome
+}
+
+const resultado = saudacao()
+
+console.log(resultado) // Olá, undefined
+```
+
+Para evitar problemas nestas situações, podemos definir um valor padrão para os parâmetros. Desta forma, quando a função for chamada sem a
+passagem dos parâmetros, estes valores serão utilizados:
+
+```javascript
+function saudacao(nome = 'Anônima') {
+  return "Olá, " + nome
+}
+
+const resultado = saudacao()
+
+console.log(resultado) // Olá, Anônima
+```
+
+### Funções em variáveis
+
+Em qualquer linguagem, é comum guardar valores em variáveis, onde tais valores podem ser números, arrays, strings, objetos, etc. 
+
+Javascript permite guardar também funções em variáveis:
+
+```javascript
+const saudacao = function(nome = 'Anônima') {
+  return "Olá, " + nome
+}
+
+const resultado = saudacao()
+
+console.log(resultado) // Olá, Anônima
+```
+
+Isso permite usar funções como se fossem dados, ou seja, passá-las por parâmetros, retorná-las, defini-las como um campo de um objeto, etc.
+
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions
