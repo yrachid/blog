@@ -93,3 +93,131 @@ Temos que usar as tags `<script>` dentro do nosso HTML para importar estes módu
   </body>
 </html>
 ```
+
+Desta maneira, conseguimos dividir as responsabilidades de cada módulo. Um é responsável por calcular, o outro, por escrever e ler coisas da
+tela.
+
+Parece bom, basta usar uma tag e temos um módulo disponível para uso, no entanto, esta maneira de modularizar o Javascript apresenta alguns
+problemas.
+
+No segundo módulo (`entrada-e-saida.js`), foi possível usar as funções `soma`  e `subtrai` do primeiro módulo (`calculadora.js`)
+diretamente. Pensando um pouco mais sobre isso, podemos ver quais problemas isso traz:
+
+> E se eu quisesse ter uma função privada no primeiro módulo? Ou seja, uma função que não fosse visível para os demais módulos da minha
+  aplicação?
+
+Ou ainda
+
+> E se eu tivesse uma função `soma` no segundo módulo também? Como eu faço para diferenciar a função soma do primeiro e do segundo módulo?
+
+Ou seja, esta forma tradicional de modularizar scripts em Javascript possui problemas de `encapsulamento`, pois eu não consigo isolar um
+módulo de outro completamente.
+
+Pensando nesses problemas, começaram a surgir padrões de projetos e bibliotecas para resolver estas questões de modularização de JavaScript
+no navegador. Tais padrões e bibliotecas surgiram antes mesmo de existir o que entendemos como `Node.js`, ou seja, elas eram utilizadas
+exclusivamente dentro dos navegadores. Uma destas bibliotecas é o [require-js](http://requirejs.org), que foi adotada pelo Node para criar
+um sistema de módulos.
+
+## O require
+
+Neste artigo, não entraremos em detalhes sobre como o require funciona nos navegadores ou sobre como ele funciona internamente e como ele
+resolve a questão dos módulos, vamos focar em entender como utilizá-lo no Node.
+
+Um programa que é feito para ser executado no node nada mais é do que um arquivo simples com código Javascript. Assim como em outras
+linguagens como Python, Ruby ou Java, podemos quebrar nosso programa em vários arquivos, importando-os conforme a nossa necessidade.
+
+### Definindo e usando módulos com require
+
+Diferentemente das tags `<script>` do HTML, o `require` nos permite controlar o que queremos expor de um módulo, o que nos permite que
+tenhamos funções e variáveis privadas que ficam invisíveis para outros módulos.
+
+Para que isso funcione, dentro de cada arquivo `js` da nossa aplicação, teremos acesso à uma variável "global" do require chamada
+`module.exports`, a qual nos permite definir o que queremos que o nosso módulo contenha.
+
+Pelo fato de `module.exports` ser uma simples variável Javascript, podemos criar um módulo que contenha qualquer coisa, um objeto, uma
+função, uma string, um número, um array, etc.
+
+Ou seja, se quisermos ter um módulo que se chama `cinco.js` e que contenha apenas o valor `5`, podemos fazê-lo:
+
+```javascript
+// conteúdo do arquivo cinco.js
+module.exports = 5
+```
+
+Para usar um módulo dentro de outro módulo, chamamos a função global `require`. Se tivermos um módulo `numeros.js` e, neste módulo,
+queiramos usar o módulo `cinco.js`, podemos fazer o seguinte:
+
+```javascript
+// numeros.js
+const cinco = require('./cinco.js')
+
+console.log(cinco)
+```
+
+Observe que guardamos o retorno da função require em uma variável chamada `cinco`. Sempre fazemos isso, pois esta variável irá referenciar o
+módulo que importamos, ou seja, é o mecanismo que temos para utilizar o módulo importado.
+
+_Imagine agora, que no módulo `cinco` queiramos valores privados, que não sejam acessíveis por outros módulos. Como fazemos isso?_
+
+__Basta não atribuir estes valores ao `module.exports`!__
+
+Assim:
+
+```javascript
+// conteúdo do arquivo cinco.js
+const souInvisivel = 10
+
+module.exports = 5
+```
+
+Todo e qualquer módulo que importar `cinco.js` não terá acesso à variável `souInvisivel`, pois ela não foi atribuída à `module.exports`.
+
+Como mencionado anteriormente, o require não se limita apenas à números, podemos importar (chamar require) e exportar (atribuir um valor ao
+module.exports) qualquer outra coisa. É muito comum exportar objetos e funções por exemplo. Vejamos isso com um exemplo mais complexo.
+
+### A Calculadora em Node com require
+
+Vejamos então como definir o módulo `calculadora` usando o `require`.
+
+Primeiro, escrevemos nosso código normalmente:
+
+```javascript
+function soma(umValor, outroValor) {
+  return umValor + outroValor
+}
+
+function subtrai(umValor, outroValor) {
+  return umValor - outroValor
+}
+```
+
+Agora, como queremos exportar as duas funções (soma e subtrai), podemos criar um novo objeto com estas funções e exportar este objeto:
+
+```javascript
+function soma(umValor, outroValor) {
+  return umValor + outroValor
+}
+
+function subtrai(umValor, outroValor) {
+  return umValor - outroValor
+}
+
+// Criamos um objeto que contém as duas funções
+const operacoes = {
+  soma,
+  subtrai
+}
+
+// E entao exportamos este objeto:
+module.exports = operacoes
+```
+
+Agora, se quisermos usar as funções do módulo calculadora em outros módulos, basta importá-lo via `require`.
+
+```javascript
+const calculadora = require('./calculadora.js')
+
+console.log(calculadora.soma(1, 1)) // 2
+console.log(calculadora.subtrai(1, 1)) // 0
+```
+
