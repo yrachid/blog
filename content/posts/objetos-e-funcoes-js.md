@@ -7,11 +7,11 @@ draft: false
 Javascript é uma linguagem que possui uma sintaxe muito simples, em outras palavras, se pode expressar uma ideia imensa com poucas linhas de
 código.
 
-Entendendo o que são `Arrays`, `Objetos` e `Funções`, se pode fazer praticamente tudo em JavaScript.
+Depois de entender o que são  e como funcionam `Arrays`, `Objetos` e `Funções`, pode-se fazer praticamente tudo em JavaScript.
 
 ## Arrays
 
-São as listas do Javascript, ou seja, eles servem para armazenar múltiplos elementos.
+São as listas do Javascript, ou seja, servem para armazenar múltiplos elementos.
 
 Arrays são representados por um par de colchetes (`[]`).
 
@@ -44,12 +44,14 @@ Em Javascript, não é necessário que todos os elementos de um array sejam do m
 
 Os arrays em Javascript são objetos, o que significa que eles possuem atributos e "métodos". Ou seja, podemos fazer coisas como:
 
+Saber o tamanho de um array:
+
 ```javascript
   const arraySimples = [1, 2, 4]
   console.log(arraySimples.length) // 3
 ```
 
-Podemos adicionar novos elementos no final do array:
+Adicionar novos elementos no final:
 
 ```javascript
   const arraySimples = [1, 2, 4]
@@ -57,7 +59,17 @@ Podemos adicionar novos elementos no final do array:
   console.log(arraySimples) // [1, 2, 4, 5]
 ```
 
-__Acessando elementos de um array:__
+Iterar sobre os elementos:
+
+```javascript
+  const arraySimples = [1, 2, 4]
+
+  arraySimples.forEach(function(elemento) {
+    console.log(elemento)
+  })
+```
+
+### Acessando elementos de um array:
 
 ```javascript
   const arraySimples = [1, 2, 4]
@@ -153,7 +165,7 @@ Um campo que contém um array que contém outros objetos:
 ### Construindo objetos com variáveis
 
 Podemos construir objetos à partir de outras variáveis, ou seja, não precisamos sempre colocar os dados de maneira estática em cada campo
-(como fora demonstrado nos exemplos anteriores). Podemos fazer coisas como:
+(como fora demonstrado até então). Podemos fazer coisas como:
 
 ```javascript
 const nome = 'Lopes'
@@ -163,14 +175,15 @@ const pessoa = {
   nome: nome,
   idade: idade
 }
+```
 
-// Ou, podemos simplificar para o seguinte:
+Ou, podemos simplificar para o seguinte:
 
+```javascript
 const pessoa = {
   nome,
   idade
 }
-
 ```
 
 ### Acessando elementos de um objeto
@@ -180,6 +193,7 @@ Existem diferentes maneiras de se acessar elementos de um objeto, a mais comum �
 ```javascript
   console.log(pessoa.nome) // 'Silva'
   console.log(pessoaComPet.pet.nome) // 'Silvinha'
+  console.log(aviao.voos[0].numero) // 'LA751'
 ```
 
 Assim como num array, também podemos usar a notação de chaves para acessar os elementos de um objeto:
@@ -207,9 +221,9 @@ o que significa que podemos fazer coisas como:
 - Ter uma função como membro de um objeto
 - Ter uma função dentro de outra função
 
-Vamos começar pelo começo, entendendo como declarar e chamar uma função. Temos duas opções na hora de declarar uma nova função:
+_Vamos começar pelo começo, entendendo como declarar e chamar uma função._
 
-Declarando uma função simples:
+__Declarando uma função simples:__
 
 ```javascript
 
@@ -218,7 +232,7 @@ function saudacao() {
 }
 ```
 
-Chamando a função que acabamos de declarar:
+__Chamando a função que acabamos de declarar:__
 
 ```javascript
 
@@ -255,8 +269,8 @@ const resultado = saudacao()
 console.log(resultado) // Olá, undefined
 ```
 
-Para evitar problemas nestas situações, podemos definir um valor padrão para os parâmetros. Desta forma, quando a função for chamada sem a
-passagem dos parâmetros, estes valores serão utilizados:
+Para evitar problemas nestas situações, podemos definir um valor padrão para cada parâmetro. Desta forma, quando a função for chamada sem a
+passagem dos parâmetros, os valores que definimos serão utilizados:
 
 ```javascript
 function saudacao(nome = 'Anônima') {
@@ -270,9 +284,9 @@ console.log(resultado) // Olá, Anônima
 
 ### Funções em variáveis
 
-Em qualquer linguagem, é comum guardar valores em variáveis, onde tais valores podem ser números, arrays, strings, objetos, etc. 
+Em qualquer linguagem, é comum guardar valores em variáveis, onde tais valores podem ser números, arrays, strings, objetos, etc.
 
-Javascript permite guardar também funções em variáveis:
+Javascript vai um pouco além ao permitir guardar também funções em variáveis (o que nem sempre vemos em outras linguagens):
 
 ```javascript
 const saudacao = function(nome = 'Anônima') {
@@ -285,6 +299,10 @@ console.log(resultado) // Olá, Anônima
 ```
 
 Isso permite usar funções como se fossem dados, ou seja, passá-las por parâmetros, retorná-las, defini-las como um campo de um objeto, etc.
+
+### Passando uma função por parâmetro
+
+Funções passadas por parâmetro
 
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions
