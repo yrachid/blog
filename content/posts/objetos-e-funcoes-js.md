@@ -302,7 +302,24 @@ Isso permite usar funções como se fossem dados, ou seja, passá-las por parâm
 
 ### Passando uma função por parâmetro
 
-Funções passadas por parâmetro
+É amplamente comum enviar funções por parâmetro em JavaScript. Vejamos um exemplo:
 
+```
+function oi(nome) {
+  return 'Oi, ' + nome
+}
 
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions
+function tchau(nome) {
+  return 'Tchau, ' + nome
+}
+
+function saudacaoCustomizada(saudacao, nome) {
+  return saudacao(nome)
+}
+
+console.log(saudacaoCustomizada(oi, 'Silva')) // Oi, Silva
+console.log(saudacaoCustomizada(tchau, 'Silva')) // Tchau, Silva
+
+```
+
+[Mais informações sobre funções](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions).
