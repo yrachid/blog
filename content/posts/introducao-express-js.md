@@ -263,3 +263,80 @@ server.listen(3000, () => console.log('A aplicacao iniciou, visit http://localho
 Ao executarmos esse script, podemos acessar o endereço no navegador e então teremos algo como:
 
 ![Uma lista de produtos no navegador](/images/2018/05/04/lista-de-produtos.png)
+
+### Implementando a busca de produtos
+
+E se quisermos adicionar a funcionalidade de busca? Temos que alterar nosso código, adicionando mais um if:
+
+
+```javascript
+const http = require('http')
+const url = require('url')
+
+const produtos = [
+  'Balde',
+  'Vassoura',
+  'Copo',
+  'Cavalo',
+  'Relogio'
+]
+
+const buscaProdutos = (produtoBuscado) => produtos.filter(produto => produtoBuscado === produto)
+
+const pescaNomeDoProduto = (rota) => {
+  nomeProduto = rota.query.split('=')[1]
+
+  return nomeProduto
+}
+
+const server = http.createServer((request, response) => {
+
+  // Usamos o modulo url para interpretar os pedacos da url.
+  // Um request /busca?produto=abc vai gerar o seguinte objeto:
+  //
+  // Url {
+  //   protocol: null,
+  //   slashes: null,
+  //   auth: null,
+  //   host: null,
+  //   port: null,
+  //   hostname: null,
+  //   hash: null,
+  //   search: '?asfdsadf=asdf',
+  //   query: 'asfdsadf=asdf',
+  //   pathname: '/busca',
+  //   path: '/busca?asfdsadf=asdf',
+  //   href: '/busca?asfdsadf=asdf' }
+
+  const rota = url.parse(request.url)
+
+  // Se o request for na rota /produtos e for do tipo GET...
+  if (request.method === 'GET' && rota.pathname === '/produtos') {
+    response.write('Lista de produtos: \n')
+    response.write(produtos.join('\n'))
+    return response.end()
+  }
+
+  // Se o request for na rota /busca e for do tipo GET...
+  if (request.method === 'GET' && rota.pathname === '/busca') {
+    const produtoBuscado = pescaNomeDoProduto(rota)
+    const produtosEncontrados = buscaProdutos(produtoBuscado)
+
+    response.write('Lista de produtos: \n')
+    response.write(produtosEncontrados.join('\n'))
+    return response.end()
+  }
+
+  // Senao, erro 404...
+  response.write('Rota não encontrada')
+  return response.end()
+})
+
+// Vamos esperar requests na porta 3000
+server.listen(3000, () => console.log('A aplicacao iniciou, visit http://localhost:3000/'))
+```
+
+Ao executarmos esse script, podemos acessar o endereço no navegador e então teremos algo como:
+
+![Uma lista de produtos no navegador](/images/2018/05/04/busca-de-produtos.png)
+
