@@ -214,8 +214,52 @@ GET www.o-comercio.com.br/busca?nomeProduto=balde
 ```
 
 Pode-se observar que esta URL possui detalhes a mais, mais especificamente, este pedaço: `?nomeProduto=balde`. Chamamos esta parte da URL de
-`query` e ela serve para passarmos parâmetros para um request `GET`. Em um request do tipo `POST`, os dados enviados ficam no corpo da
-requisição. Usamos as `queries` em requests `GET` porque requests do tipo `GET` _não possuem corpo_. Não se preocupe se isso ficar abstrato
-demais agora, uma vez que vejamos código, isso ficará mais claro.
+[query](https://en.wikipedia.org/wiki/Query_string) e ela serve para passarmos parâmetros para um request `GET`. Em um request do tipo
+`POST`, os dados enviados ficam no corpo da requisição. Usamos as `queries` em requests `GET` porque requests do tipo `GET` _não possuem
+corpo_. Não se preocupe se isso ficar abstrato demais agora, uma vez que vejamos código, isso ficará mais claro.
 
 Basicamente, é assim que nos comunicamos com uma aplicação via HTTP. Vamos ver como implementar isso com código.
+
+## A lista de produtos com Node.js (sem Express)
+
+Vamos ver como implementaríamos a lista de produtos da aplicação do `o-comercio` usando nada além de Node.js. Para fins de simplicidade,
+vamos assumir o seguinte:
+
+- A aplicação não se conecta com banco dados, toda a informação ficará na memória
+- Vamos executar a aplicação na nossa própria máquina (o que conhecemos por [localhost](https://en.wikipedia.org/wiki/Localhost))
+
+Vamos começar:
+
+```javascript
+const http = require('http')
+
+// Nossa lista de produtos
+const produtos = [
+  'Balde',
+  'Vassoura',
+  'Copo',
+  'Cavalo',
+  'Relogio'
+]
+
+const server = http.createServer((request, response) => {
+
+  // Se o request for na rota produtos e for do tipo get...
+  if (request.method === 'GET' && request.url === '/produtos') {
+    response.write('Lista de produtos: \n')
+    response.write(produtos.join('\n'))
+    return response.end()
+  }
+
+  // Senao, erro 404...
+  response.write('Rota não encontrada')
+  return response.end()
+})
+
+// Vamos esperar requests na porta 3000
+server.listen(3000, () => console.log('A aplicacao iniciou, visit http://localhost:3000/produtos'))
+```
+
+Ao executarmos esse script, podemos acessar o endereço no navegador e então teremos algo como:
+
+![Uma lista de produtos no navegador](/images/2018/05/04/lista-de-produtos.png)
