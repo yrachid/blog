@@ -132,3 +132,30 @@ GET   /
 Verbo Rota
 ```
 
+## Verbos e rotas HTTP
+
+O protocolo HTTP permite especificar um __verbo__ e uma __rota__ quando fazemos uma requisição para uma aplicação web. Estas duas
+informaçoes nos ajudam a organizar a aplicação, separando a lógica que deve ser implementada para cada rota e verbo.
+
+### Verbos
+
+O HTTP possui vários verbos que são utilizados para descrever qual o tipo de operação queremos executar. Os mais relevantes geralmente são:
+
+- __GET__ : Quando indicamos que o request que estamos fazendo quer buscar informações da aplicação
+- __POST__: Usamos post para enviar informações para que a aplicação as salve em algum lugar (um banco de dados, por exemplo)
+
+### Rotas
+
+As rotas não possuem um padrão definido (como os verbos). Fica a critério de quem está desenvolvendo a aplicação definir quais rotas ela
+terá.
+
+Para entender melhor os conceitos de verbos e rotas, vamos pensar em um exemplo: Um _e-commerce_.
+
+Funcionalidades comuns de um e-commerce:
+
+- Lista de produtos
+- Login
+- Carrinho
+- Busca
+
+Agora, imaginando que estamos criando a aplicação de e-commerce, como suportaríamos estas funcionalidades?
