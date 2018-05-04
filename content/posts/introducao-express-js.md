@@ -230,6 +230,21 @@ vamos assumir o seguinte:
 
 Vamos começar:
 
+Antes de mais nada, temos que criar o arquivo que vai conter o código da nossa aplicação. Vamos fazer o seguinte:
+
+```sh
+# Criamos uma pasta para o projeto
+mkdir o-comercio
+
+# Acessamos a pasta
+cd o-comercio
+
+# Criamos o arquivo que conterá o código
+touch server.js
+```
+
+Agora, escrevemos o código que irá receber `requests` e enviar `responses` HTTP:
+
 ```javascript
 const http = require('http')
 
@@ -264,9 +279,9 @@ Ao executarmos esse script, podemos acessar o endereço no navegador e então te
 
 ![Uma lista de produtos no navegador](/images/2018/05/04/lista-de-produtos.png)
 
-### Implementando a busca de produtos
+## Implementando a busca de produtos
 
-E se quisermos adicionar a funcionalidade de busca? Temos que alterar nosso código, adicionando mais um if:
+E se quisermos adicionar a funcionalidade de busca? Temos que alterar nosso código:
 
 
 ```javascript
@@ -340,3 +355,75 @@ Ao executarmos esse script, podemos acessar o endereço no navegador e então te
 
 ![Uma lista de produtos no navegador](/images/2018/05/04/busca-de-produtos.png)
 
+Usando apenas o Node e os módulos `http` e `url` já conseguimos implementar as funcionalidades de nosso e-commerce, no entanto, para cada
+nova rota, teríamos que adicionar um novo if e o código começa a ficar extenso... Vamos fazer exatamente a mesma coisa, só que dessa vez,
+vamos usar o Express
+
+
+## Reconstruindo a aplicacão com o Express
+
+Antes de mais nada, temos que adicionar o express ao projeto. Os módulos que utilizamos anteriormente (http e url) fazem parte da biblioteca
+padrão do Node, ou seja, eles vêm junto com o Node na hora da sua instalação e são compilados junto com o restante do código do Node (Mais
+detalhes sobre isso [nesta discussão](https://stackoverflow.com/a/42892065)), por isso não foi necessário utilizar o NPM para instalá-los.
+Este não é o caso do Express, já que ele é um módulo desenvolvido pela comunidade e está disponível no repositório do NPM nas internets.
+
+Primeiro, então, configuramos o nosso projeto com o NPM:
+
+```
+npm init
+```
+
+Respondemos às perguntas do npm (podemos apenas apertar enter até o fim do questionário).
+
+Então, adicionamos o `express` na lista das nossas dependências:
+
+```
+npm install --save express
+```
+
+Após a execução deste comando, teremos uma pasta chamada `node_modules`. Nesta pasta ficarão todos os módulos baixados pelo npm.
+
+Agora que temos o `express` instalado, podemos começar a desenvolver a aplicação utilizando-o.
+
+Podemos apagar tudo que está contido no arquivo server.js, para então escrevermos o novo código que usa o `express`. Para isso, escreveremos
+o seguinte:
+
+```javascript
+const express = require('express')
+
+const produtos = [
+  'Balde',
+  'Vassoura',
+  'Copo',
+  'Cavalo',
+  'Relogio'
+]
+
+const buscaProdutos = (produtoBuscado) => produtos.filter(produto => produtoBuscado === produto)
+
+const server = express()
+
+server.get('/produtos', (request, response) => {
+  response.send(
+    'Lista de Produtos:\n' +
+    produtos.join('\n'))
+})
+
+server.get('/busca', (request, response) => {
+  const produtosEncontrados = buscaProdutos(request.query.nomeProduto)
+
+  response.send(
+    'Lista de Produtos:\n' +
+    produtosEncontrados.join('\n'))
+})
+
+server.listen(3000, () => console.log('Acesse localhost:3000'))
+```
+
+E assim temos uma nova aplicação express.
+
+Neste exemplo, o ganho trazido pelo Express pode parecer pequeno, mas, conforme a aplicação vai crescendo, o modelo do Express permite
+escalar a aplicação de uma forma muito confortável.
+
+Usar o Express nos traz muitas vantagens, no entanto, é preciso dedicar um pouquinho de tempo para entendê-lo melhor e conhecer onde seus
+benefícios serão bem aproveitados. Essa parte fica para um próximo artigo. :)
