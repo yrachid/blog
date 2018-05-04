@@ -63,8 +63,8 @@ Então, observando o que acontece quando uma pessoa acessa um site qualquer, pod
 
 ### Como se parece uma requisição HTTP?
 
-No exemplo anterior, o browser fez uma requisição para o site **www.google.com.br**. Na prática, ele enviou, através de uma comunicação
-HTTP, um texto, mais ou menos como este:
+No exemplo anterior, o browser fez uma requisição para o site **www.google.com.br**. Na prática, ele enviou através de uma comunicação
+HTTP, um texto mais ou menos como este:
 
 ```http
 GET  HTTP/1.1
@@ -88,11 +88,8 @@ E o servidor da Google, por sua vez, respondeu com algo mais ou menos assim:
 ...
 ```
 
-Ou seja, a resposta do browser foi um documento HTML, contento scripts JavaScript e links para outros documentos CSS e mais scripts. Esta é
+Ou seja, a resposta do browser foi um documento HTML, contendo scripts JavaScript e links para outros documentos CSS e mais scripts. Esta é
 a informação que o browser interpretará e transformará na famosa página de busca da Google.
-
-Em princípio, isso é tudo que precisamos saber sobre como os computadores se comunicam através da internet, no entanto, este é um assunto
-que se aprofunda muito e possui inúmeros conceitos e tópicos que valem a pena serem aprendidos em algum momento.
 
 ### HTTP na prática
 
@@ -147,15 +144,78 @@ O HTTP possui vários verbos que são utilizados para descrever qual o tipo de o
 ### Rotas
 
 As rotas não possuem um padrão definido (como os verbos). Fica a critério de quem está desenvolvendo a aplicação definir quais rotas ela
-terá.
+responderá. Quando algum programa faz um request para uma rota que não é suportada pela aplicação, temos o famoso erro `404`.
 
-Para entender melhor os conceitos de verbos e rotas, vamos pensar em um exemplo: Um _e-commerce_.
+### Um exemplo mais prático de rotas e verbos
 
-Funcionalidades comuns de um e-commerce:
+Para entender melhor quando e como utilizar determinados verbos e rotas, vamos pensar em um exemplo: Um _e-commerce_.
+
+Primeiro, vamos pensar em algumas funcionalidades comuns de um site de e-commerce:
 
 - Lista de produtos
 - Login
 - Carrinho
 - Busca
 
-Agora, imaginando que estamos criando a aplicação de e-commerce, como suportaríamos estas funcionalidades?
+Agora, imaginando que estamos criando a aplicação de e-commerce, como suportaríamos estas funcionalidades? Vamos pensar somente na parte do
+HTTP, sem mais detalhes.
+
+__O site__
+
+Primeiro, por se tratar de um site, vamos assumir que nossa aplicação estará hospedada no endereço `www.o-comercio.com.br`.
+
+__A Lista de produtos__
+
+Para implementarmos uma lista de produtos, é bem provável que usaremos o método http `GET`, já que queremos buscar uma lista de produtos e
+exibí-la para as pessoas usuárias. Portanto, podemos ter nossa primeira rota: `/produtos`.
+
+Um exemplo de pseudo-request seria:
+
+```
+GET www.o-comercio.com.br/produtos
+```
+
+__Login__
+
+Para que uma pessoa possa fazer login no site, ela precisa fornecer um nome de usuário e senha. Já que aplicação precisa receber informações
+para executar a tarefa de login, esta rota precisa ser do tipo `POST`. Podemos chamá-la de `/login`.
+
+Um exemplo de pseudo-request seria:
+
+```
+POST www.o-comercio.com.br/login
+usuario=doot&senha=tood
+```
+
+__Carrinho__
+
+Um carrinho ficará atrelado à um perfil de usuária, então cada vez que a pessoa adicionar um novo item no carrinho, ela terá que fornecer
+para a aplicação o produto que foi adicionado e seu nome de usuário, para que a aplicação saiba para quem atribuir aquele produto. Podemos
+chamar nossa rota de `/adicionar-produto`. Como precisamos fornecer informações, esta rota terá que ser do tipo `POST`.
+
+Um exemplo de pseudo-request seria:
+
+```
+POST www.o-comercio.com.br/adicionar-produto
+usuario=doot&idProduto=123123
+```
+
+__Busca__
+
+Nossa última funcionalidade é a de busca. Onde a pessoa digita o nome de um produto e a aplicação exibe uma lista de produtos que tenham um
+nome parecido com o que foi digitado. Nesta rota, também temos que enviar dados para a aplicação (o nome do produto pesquisado), no entanto,
+_estes dados não ficarão guardados na aplicação_, eles apenas serão usados para efetuar a pesquisa, logo, esta rota pode ser do tipo `GET`,
+ainda que ela envie dados para o servidor. Podemos chamar esta rota de `/busca`.
+
+Um exemplo de pseudo-request seria:
+
+```
+GET www.o-comercio.com.br/busca?nomeProduto=balde
+```
+
+Pode-se observar que esta URL possui detalhes a mais, mais especificamente, este pedaço: `?nomeProduto=balde`. Chamamos esta parte da URL de
+`query` e ela serve para passarmos parâmetros para um request `GET`. Em um request do tipo `POST`, os dados enviados ficam no corpo da
+requisição. Usamos as `queries` em requests `GET` porque requests do tipo `GET` _não possuem corpo_. Não se preocupe se isso ficar abstrato
+demais agora, uma vez que vejamos código, isso ficará mais claro.
+
+Basicamente, é assim que nos comunicamos com uma aplicação via HTTP. Vamos ver como implementar isso com código.
