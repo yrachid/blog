@@ -28,7 +28,7 @@ Cada **protocolo** é utilizado para um tipo específico de conversa, por exempl
 * **FTP:** é utilizado para trocar arquivos entre computadores
 * **HTTP:** utilizado para a transferência de conteúdo hipertexto
 
-### O **HTTP **
+### O HTTP
 
 O protocolo HTTP pode ser entendido como **a fundação da internet**, pois ele permite que se envie informações de arquivos HTML, CSS e
 JavaScript de um computador para o outro, o que é fundamental para a vida das páginas web \(a forma principal de comunicação utilizada na
@@ -92,5 +92,43 @@ Ou seja, a resposta do browser foi um documento HTML, contento scripts JavaScrip
 a informação que o browser interpretará e transformará na famosa página de busca da Google.
 
 Em princípio, isso é tudo que precisamos saber sobre como os computadores se comunicam através da internet, no entanto, este é um assunto
-que se aprofunda muito e possui inúmeros conceitos e tópicos que valem a pena serem aprendidos em algum momento. Caso você queira ver essa
-comunicação acontecendo na prática, há um exemplo de como utilizar o comando **telnet** para se comunicar com servidores através de HTTP.
+que se aprofunda muito e possui inúmeros conceitos e tópicos que valem a pena serem aprendidos em algum momento.
+
+### HTTP na prática
+
+Caso você queira ver essa comunicação acontecendo na prática, pode usar o comando `telnet`:
+
+Primeiro, estabeleça a conexão com a Google via telnet:
+
+```sh
+telnet google.com 80
+```
+
+Após a execução deste comando, a seguinte mensagem deve aparecer:
+
+```
+Trying 172.217.4.46...
+Connected to google.com.
+Escape character is '^]'.
+```
+
+Após esta mensagem, digite o seguinte e pressione `enter`:
+
+```sh
+GET /
+```
+
+Depois disso, o servidor da Google irá responder com um monte de HTML (que é o que o nosso browser recebe quando navegamos até google.com) e
+então encerrará a conexão.
+
+Neste último comando, existem duas informações muito importantes à respeito de como se organiza uma aplicação web:
+
+- O verbo HTTP (no caso do comando, usamos o `GET`)
+- A rota (no caso, usamos `/`)
+
+```sh
+GET   /
+^^^   ^
+Verbo Rota
+```
+
