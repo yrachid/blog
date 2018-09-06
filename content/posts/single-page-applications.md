@@ -12,6 +12,13 @@ para outras páginas.
 
 A verdade é que esse termo representa algo totalmente diferente do que eu pensava.
 
-Para entender Single Page Applications e as motivações por trás desse conceito, precisamos antes entender um pouco sobre como o HTTP e as
-aplicações web em si funcionam, talvez esse artigo possa ajudar. Antes do surgimento das SPAs, o padrão que reinava no mundo de aplicações
-web era o da renderização do lado do servidor (mais comumente denominada por seu nome gringo: Server Side Rendering).
+Resumidamente, o Wikipédia descreve SPAs como o sendo o seguinte:
+
+> São aplicações web que interagem com o usuário ao reescrever a página dinamicamente em vez de carregar novas páginas do servidor.
+
+Apesar de parecer uma maneira ligeiramente diferente de se estruturar uma aplicação, na prática, isso implica em diferenças drásticas nos
+mais variados aspectos de uma aplicação web.
+
+Para entender melhor o Single Page Applications, suas motivações, vantagens e difereças, precisamos antes entender um pouco sobre como o
+HTTP e as aplicações web em si funcionam, talvez esse artigo possa ajudar. Antes do surgimento das SPAs, o padrão que reinava no mundo de
+aplicações web era o da renderização do lado do servidor (mais comumente denominada por seu nome gringo: Server Side Rendering).
