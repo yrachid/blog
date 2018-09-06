@@ -300,7 +300,7 @@ console.log(resultado) // Olá, Anônima
 
 Isso permite usar funções como se fossem dados, ou seja, passá-las por parâmetros, retorná-las, defini-las como um campo de um objeto, etc.
 
-### Passando uma função por parâmetro
+### Funções por parâmetro
 
 É amplamente comum enviar funções por parâmetro em JavaScript. Vejamos um exemplo:
 
@@ -320,5 +320,53 @@ function saudacaoCustomizada(saudacao, nome) {
 console.log(saudacaoCustomizada(oi, 'Silva')) // Oi, Silva
 console.log(saudacaoCustomizada(tchau, 'Silva')) // Tchau, Silva
 ```
+
+#### Callbacks
+
+Acabamos de ver como passar uma função por parâmetro para outra função, o que é extremamente útil no JavaScript e nos ajuda em diversas
+situações. Geralmente, chamamos estas funções passadas por parâmetros de
+[callbacks](https://developer.mozilla.org/en-US/docs/Glossary/Callback_function). Este é um padrão amplamente utilizado no JavaScript,
+portanto, vejamos alguns exemplos de onde os callbacks são utilizados.
+
+#### Percorrendo e manipulando listas sem loops
+
+Os arrays do Javascript possuem algumas funções extremamente úteis para quando necessitamos manipular listas. Tais funções possuem uma
+pequena curva de aprendizado, mas uma vez que se entenda como elas são utilizadas, se torna muito mais confortável manipular uma lista (ou
+array, já que se trata de Javascript), especialmente quando precisamos transformar elementos, filtrá-los de acordo com condições
+específicas, encontrar um ou mais elementos, etc.
+
+##### forEach
+
+Vejamos primeiro a maneira tradicional (usando for) de percorrer um array:
+
+```js
+const numeros = [1, 2, 3, 4]
+
+for (let numero in numeros) {
+  console.log(numero)
+}
+```
+
+Esse loop irá percorrer o array `numeros`, escrevendo cada número no console.
+
+Agora, a mesma operação usando
+[Array.prototype.forEach](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach):
+
+```js
+const numeros = [1, 2, 3, 4]
+
+numeros.forEach(function(numero) {
+  console.log(numero)
+})
+```
+
+Nesta versão, passamos uma função como `callback` para a função `forEach`. A função `forEach` por sua vez chamará o nosso callback, passando
+a ele cada item do array individualmente. Ou seja, neste caso, nosso `callback` será chamado quatro vezes, uma vez para cada item do array:
+
+- A primeira chamada enviará `1` como argumento para o callback
+- A segunda chamada enviará `2` como argumento para o callback
+- A terceira chamada enviará `3` como argumento para o callback
+- A quarta chamada enviará `4` como argumento para o callback
+
 
 [Mais informações sobre funções](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions).
