@@ -1,0 +1,37 @@
+#!/bin/bash
+
+init_routine() {
+  git submodule init
+  git submodule update
+}
+
+run_routine() {
+  init_routine
+  hugo serve
+}
+
+post_routine() {
+  local post_title=$1
+  hugo new posts/${post_title}.md
+}
+
+case $1 in
+  run)
+    run_routine
+    ;;
+
+  post)
+    post_routine "$2"
+    ;;
+
+  deploy)
+    ./deploy.sh
+    ;;
+
+  *)
+    echo
+    echo "Available options: run, post, deploy"
+    echo -e "\tpost receives the post title as param and runs hugo new posts/{post-title}.md"
+    echo
+    ;;
+esac
