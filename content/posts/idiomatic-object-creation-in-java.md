@@ -59,7 +59,7 @@ public final class Issue {
     private IncidentSeverity severity;
 
     @Data
-    public static finial class IncidentSeverity {
+    public static final class IncidentSeverity {
       private String severity;
     }
 
