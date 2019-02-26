@@ -7,7 +7,7 @@ init_routine() {
 
 run_routine() {
   init_routine
-  hugo serve
+  hugo server --buildDrafts
 }
 
 post_routine() {
