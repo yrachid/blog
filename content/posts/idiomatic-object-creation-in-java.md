@@ -1,6 +1,6 @@
 +++
 draft = true
-date = "2018-01-01T00:00:00-00:00"
+date = "2019-02-26T00:00:00-00:00"
 title = "Idiomatic object creation in Java"
 slug = ""
 tags = []
@@ -40,7 +40,7 @@ convention (no args constructor, getters and setters). It would be less cumberso
 immutable and an all args constructor. With some tweaking, Jackson works well with value classes, but we did not have time for that.
 
 
-### Lombok
+## Lombok
 
 One (not so) quick win to make this easier on the eyes, is to use [Lombok](https://projectlombok.org/):
 
@@ -73,11 +73,12 @@ public final class Issue {
 ```
 
 The Data annotation will generate the boilerplate code to make this class a Java Bean:
+
   - No args constructor
   - Getters and setters
   - toString, equals and hashCode
 
-### The traditional way
+## The traditional way
 
 ```java
 Issue issue = new Issue();
@@ -103,7 +104,7 @@ fields.setTags(tags);
 issue.setFields(fields);
 ```
 
-### Static blocks
+## Double braces
 
 ```java
 
@@ -131,34 +132,48 @@ Issue issue = new Issue() {{
 }};
 ```
 
-Static blocks work specially well with value classes (those with immutable attributes):
+### The big catch
+
+Double braces actually do a lot of things that are not so obvious at a first glance. Such things may introduce nasty problems that are not
+worth to be dealt with for the sake of a slightly more readable code.
+
+Therefore, a valuable advice would be to actually avoid using this approach deliberately. It may be ok to adopt it when there is not too
+many classes and you don't need lots of instances of such classes. Even then, I'd still be careful.
+
+Let's understand why.
+
+When using double braces, we're combining three Java constructs:
+  - Anonymous classes
+  - Inheritance
+  - Instance initialization block
+
+The first pair of braces creates an anonymous class that inherits from the class we're instantiating:
 
 ```java
-Issue issue = new Issue() {{
-  key = "RFS-400";
-
-  fields = new Issue.Fields() {{
-    summary = "Website is down";
-
-    severity = new Issue.Fields.Severity() {{
-      value = "Critical";
-    }};
-
-    tags = asList(
-      new Tag() {{
-        value = "front-end";
-      }},
-      new Tag() {{
-        value = "infrastructure";
-      }}
-    );
-
-  }});
-}};
-
+/*
+This will generate a new anonymous class Issue$1 and we'll end up with an instance of that class instead of an instance of Issue.
+*/
+Issue issue - new Issue() {
+};
 ```
 
-### Lambda based builders
+There are tons of problems that may be caused by this:
+  - Incorrect `equals` behaviour
+
+
+
+
+When using double braces syntax, we end up doing a lot of (nasty) things under the hood for the sake of readability.
+
+__Advantages:__
+
+  - No effort required. It's plain old Java syntax
+
+__Disadvantages:__
+
+  - Double bracket syntax pollutes things a little bit
+
+## Lambda based builders
 
 ```java
 import static IssueCreator.issue;
@@ -167,16 +182,29 @@ Issue issue = issue(issue -> issue
   .key("RFS-400")
   .fields(fields -> fields
     .summary("Website is down")
-    .severity(severity -> severity
-      .value("Critical")
-    )
+    .severity("Critical")
     .tag("front-end")
     .tag("infrastructure")
   )
 );
 ```
 
-### Bonus: Kotlin named parameters
+__Advantages:__
+
+  - Much easier to read
+  - Intuitive
+  - Reusable/composable
+  - Allows shortcuts
+  - It's easier to simplify things and hide the ugly parts (like setting optional attributes as `null`)
+
+__Disadvantages:__
+
+  - Repetitive
+  - No easy way to automate the repitition
+
+## Bonus: Kotlin named parameters
+
+Since we're talking about Java, Kotlin
 
 ```kotlin
 class Issue(
