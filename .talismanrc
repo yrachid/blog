@@ -1,0 +1,4 @@
+fileignoreconfig:
+- filename: content/posts/debito-tecnico.md
+  checksum: a041c4e953691e3f719d4cbfcae048179e9bae496e4e0fe3975fc054fcbf57cf
+  ignore_detectors: []

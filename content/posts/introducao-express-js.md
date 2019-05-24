@@ -49,7 +49,7 @@ Então, observando o que acontece quando uma pessoa acessa um site qualquer, pod
 
 * Alguém acessa o site no endereço _www.google.com.br_
 * O browser faz uma **requisição HTTP** para o servidor que está no endereço _www.google.com.br_
-  * Em outras palavras, o browser diz, falando em HTTP com o servidor: _"Por favor, me passe os dados da página"_
+* Em outras palavras, o browser diz, falando em HTTP com o servidor: _"Por favor, me passe os dados da página"_
 * O servidor, de maneira formal, responde ao browser com uma **resposta HTTP** contendo as informações pedidas de forma organizada e
   padronizada, de um jeito que browser consegue entender o que foi recebido
 
@@ -57,9 +57,9 @@ Então, observando o que acontece quando uma pessoa acessa um site qualquer, pod
 
 * O browser recebe o conteúdo HTML, CSS e JS que foi enviado pelo servidor através do HTTP
 * O browser começa a interpretar tal conteúdo, transformando-o em uma página
-  * Baseada na estrutura descrita pelo HTML
-  * Nos estilos descritos nos CSS
-  * E em tudo mais que estiver nos JavaScripts
+* Baseada na estrutura descrita pelo HTML
+* Nos estilos descritos nos CSS
+* E em tudo mais que estiver nos JavaScripts
 
 ### Como se parece uma requisição HTTP?
 
