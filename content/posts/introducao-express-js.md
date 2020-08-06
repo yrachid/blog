@@ -141,10 +141,17 @@ O HTTP possui vários verbos que são utilizados para descrever qual o tipo de o
 - __GET__ : Quando indicamos que o request que estamos fazendo quer buscar informações da aplicação
 - __POST__: Usamos post para enviar informações para que a aplicação as salve em algum lugar (um banco de dados, por exemplo)
 
+A [documentação da Mozilla Developer Network](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Methods) possui uma definição formal de
+todos os verbos do HTTP e o que cada um significa, leitura muito recomendada!
+
 ### Rotas
 
-As rotas não possuem um padrão definido (como os verbos). Fica a critério de quem está desenvolvendo a aplicação definir quais rotas ela
-responderá. Quando algum programa faz um request para uma rota que não é suportada pela aplicação, temos o famoso erro `404`.
+As rotas não possuem um padrão definido (como os verbos), fica a critério de quem está desenvolvendo a aplicação definir quais rotas ela
+responderá, entretanto, é importante respeitar regras do HTTP de nomenclatura (tomar cuidado com espaços e outros caracteres especiais, por
+exemplo). [Este artigo](https://www.talisman.org/~erlkonig/misc/lunatech%5Ewhat-every-webdev-must-know-about-url-encoding/) explica bem os
+detalhes sobre URL e encoding (está em inglês, mas o Google Tradutor consegue traduzir bem).
+
+Quando algum programa faz um request para uma rota que não é suportada pela aplicação, temos o famoso erro `404`.
 
 ### Um exemplo mais prático de rotas e verbos
 
@@ -427,3 +434,8 @@ escalar a aplicação de uma forma muito confortável.
 
 Usar o Express nos traz muitas vantagens, no entanto, é preciso dedicar um pouquinho de tempo para entendê-lo melhor e conhecer onde seus
 benefícios serão bem aproveitados. Essa parte fica para um próximo artigo. :)
+
+## Outras leituras recomendadas
+
+- [MDN: Visão geral do HTTP (em inglês)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview)
+- [Convenções de nomenclatura de URL REST](https://restfulapi.net/resource-naming/)
