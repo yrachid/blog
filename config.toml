@@ -1,29 +1,38 @@
-
-baseURL = "https://yrachid.com/"
+baseurl = "/"
 languageCode = "en-us"
-title = "Yasser Rachid"
-
-theme = "coder"
-
-pygmentsstyle = "b2"
-pygmentscodefences = true
-pygmentscodefencesguesssyntax = true
-
-[permalinks]
-    post = "posts/:title/"
-    default = ":title/"
+theme = "terminal"
+paginate = 15
 
 [params]
-    info = "Writings"
-    description = "yrachid.toString()"
-    keywords = "blog,developer,personal"
+  contentTypeName = "posts"
+  themeColor = "orange"
+  showMenuItems = 2
+  showLanguageSelector = false
+  fullWidthTheme = false
+  centerTheme = false
+  # favicon = "favicon.ico"
 
-[[menu.main]]
-    name = "About"
-    weight = 1
-    url = "/about/"
+[languages]
+  [languages.en]
+    languageName = "English"
+    title = "Yasser Rachid"
+    subtitle = "Notes"
+    keywords = ""
+    copyright = ""
+    menuMore = "Show more"
+    readMore = "Read more"
+    readOtherPosts = "Read other posts"
 
-[[menu.main]]
-    name = "Github"
-    weight = 2
-    url = "https://github.com/yrachid"
+    [languages.en.params.logo]
+      logoText = "yrachid's notes"
+      logoHomeLink = "/"
+
+    [languages.en.menu]
+      [[languages.en.menu.main]]
+        identifier = "about"
+        name = "About"
+        url = "/about"
+      [[languages.en.menu.main]]
+        identifier = "github"
+        name = "Github"
+        url = "https://github.com/yrachid"
