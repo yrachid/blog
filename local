@@ -30,7 +30,7 @@ post_routine() {
   hugo new posts/${post_title}.md
 }
 
-case $1 in
+case ${1:-none} in
   run)
     run_routine
     ;;
