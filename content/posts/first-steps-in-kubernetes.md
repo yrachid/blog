@@ -12,20 +12,18 @@ showFullContent = false
 
 Como desenvolvedor, utilizo o Docker há uns quatro anos para tarefas do dia-a-dia de desenvolvimento e para deploy de aplicações,
 entretanto, o Kubernetes dominou o cenário de aplicações conteinerizadas, tornando-se fundamental compreendê-lo ao menos em um nível básico
-para entender os novos caminhos para produção que surgiram depois de sua adoção. Portanto, esse texto é um compilado do que estou aprendendo
-nos meus estudos sobre Kubernetes. Estou buscando a resposta para as seguintes perguntas:
+para entender os novos caminhos para produção que surgem com sua adoção. Portanto, esse texto é um compilado do que estou aprendendo
+nos meus estudos sobre Kubernetes. Estou buscando as respostas às seguintes perguntas:
   - Posso substituir Kubernetes por Docker e Docker Compose no desenvolvimento local? 
     - Se posso, eu devo? Que vantagens isso me trará?
   - Como funcionam os deploys de aplicações com Kubernetes?
     - Como a ferramenta lida com deployments graduais e rollbacks?
     - Como fazer a promoção de uma nova versão entre os ambientes? Por exemplo, como promover uma versão que chegou em staging até produção?
 
-Outra curiosidade que quero sanar com este texto é se
-consigo substituir o Docker e suas ferramentas (Docker Compose, por exemplo) pelo Kubernetes em ambiente local.
-
 ### Antes de mais nada, como se fala Kubernetes?
 
-Como se escreve, esse negócio de "qiuberniris" é coisa de gringo, afinal, Kubernetes é uma palavra grega que significa algo como piloto.
+[Como se escreve](https://translate.google.com/?sl=et&tl=pt&text=kubernetes&op=translate), esse negócio de "qiuberniris" é coisa de gringo,
+afinal, Kubernetes é uma palavra grega que significa algo como piloto.
 
 ### O que é Kubernetes?
 
@@ -70,6 +68,6 @@ Posso usar Kubernetes para desenvolver localmente? Dá pra substituir o Docker C
 
 ### Fontes
 
-- Documentação oficial do Kubernetes
-- Thread do StackOverflow sobre Docker vs Kubernetes
+- [Documentação oficial do Kubernetes](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/)
+- [Thread do StackOverflow sobre Docker vs Kubernetes](https://stackoverflow.com/questions/47536536/whats-the-difference-between-docker-compose-and-kubernetes)
 - Kubernetes up and running
