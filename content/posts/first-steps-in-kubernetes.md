@@ -8,6 +8,7 @@ tags = ["kubernetes", "containers", "infra", "pt-BR"]
 keywords = ["", ""]
 description = ""
 showFullContent = false
+draft = true
 +++
 
 Como desenvolvedor, utilizo o Docker há uns quatro anos para tarefas do dia-a-dia de desenvolvimento e para deploy de aplicações,

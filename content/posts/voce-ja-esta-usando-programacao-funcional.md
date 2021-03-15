@@ -8,6 +8,7 @@ tags = ["", ""]
 keywords = ["", ""]
 description = ""
 showFullContent = false
+draft = true
 +++
 
 Programação funcional tornou-se um tópico muito relevante nos últimos anos, independentemente da linguagem que se utiliza. Muitas linguagens
