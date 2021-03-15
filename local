@@ -15,8 +15,7 @@ deploy_routine() {
   hugo -v
   ls -la public/
 
-  now public/
-  now alias
+  vercel --prod public/
 }
 
 
