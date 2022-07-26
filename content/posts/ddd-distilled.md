@@ -1,7 +1,7 @@
 ---
 title: "DDD Distilled"
 date: 2020-08-08T01:30:18
-draft: false
+draft: true
 ---
 
 These are some notes from what I learned watching Vaugh Vernon's live lesson about DDD:

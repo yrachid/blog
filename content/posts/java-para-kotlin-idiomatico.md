@@ -8,6 +8,7 @@ tags = ["kotlin", "java"]
 keywords = ["kotlin", "java"]
 description = "Conceitos que me ajudaram a me familiarizar com o jeito idiomático de escrever Kotlin."
 showFullContent = false
+draft = true
 +++
 
 Meu primeiro contato com Kotlin foi num projeto que trabalhei na ThoughtWorks. Meu time (composto por devs Java) herdou um projeto escrito
