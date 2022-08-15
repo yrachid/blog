@@ -1,4 +1,4 @@
-### Notes for the future
+### Notes for future
 
 The `local` file will have everything you need.
 
